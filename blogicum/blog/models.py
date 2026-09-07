@@ -1,25 +1,29 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from core.models import PublishedModel
 
 User = get_user_model()
 
 
-class Location(models.Model):
-    pass
+class Location(PublishedModel):
+    name = models.CharField(max_length=256)
 
 
-class Category(models.Model):
+class Category(PublishedModel):
     title = models.CharField(
         max_length=256,
         verbose_name='Заголовок'
     )
     description = models.TextField(
         verbose_name='Описание'
-
+    )
+    slug = models.SlugField(
+        unique=True,
+        verbose_name='Слаг'
     )
 
 
-class Post(models.Model):
+class Post(PublishedModel):
     title = models.CharField(
         max_length=256,
         verbose_name='Заголовок'
@@ -37,8 +41,14 @@ class Post(models.Model):
     )
     location = models.ForeignKey(
         Location,
-        verbose_name='',
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Местоположение'
+    )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        verbose_name='Категория'
     )
 
     class Meta:
