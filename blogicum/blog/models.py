@@ -8,6 +8,13 @@ User = get_user_model()
 class Location(PublishedModel):
     name = models.CharField(max_length=256)
 
+    class Meta:
+        verbose_name = 'публикация'
+        verbose_name_plural = 'Публикации'
+
+    def __str__(self):
+        return self.title
+
 
 class Category(PublishedModel):
     title = models.CharField(
@@ -21,6 +28,13 @@ class Category(PublishedModel):
         unique=True,
         verbose_name='Слаг'
     )
+
+    class Meta:
+        verbose_name = 'публикация'
+        verbose_name_plural = 'Публикации'
+
+    def __str__(self):
+        return self.title
 
 
 class Post(PublishedModel):
