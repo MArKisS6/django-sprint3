@@ -7,16 +7,16 @@ User = get_user_model()
 
 class Location(PublishedModel):
     name = models.CharField(
-.      max_length=256,
-.      verbose_name='Название места'
-.   )
+        max_length=256,
+        verbose_name='Название места'
+    )
 
     class Meta:
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Category(PublishedModel):
@@ -29,7 +29,8 @@ class Category(PublishedModel):
     )
     slug = models.SlugField(
         unique=True,
-        verbose_name='Слаг'
+        verbose_name='Слаг',
+        help_text='Идентификатор страницы для URL; разрешены символы латиницы, цифры, дефис и подчёркивание.'
     )
 
     class Meta:
@@ -49,7 +50,9 @@ class Post(PublishedModel):
         verbose_name='Текст'
     )
     pub_date = models.DateTimeField(
-        verbose_name='Дата и время публикации'
+        verbose_name='Дата и время публикации',
+        help_text='Если установить дату и время' \
+        ' в будущем — можно делать отложенные публикации.'
     )
     author = models.ForeignKey(
         User,
@@ -60,11 +63,13 @@ class Post(PublishedModel):
         Location,
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
         verbose_name='Местоположение'
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
+        null=True,
         verbose_name='Категория'
     )
 
