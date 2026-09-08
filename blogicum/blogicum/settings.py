@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cinema',
-    'core'
+    'core',
+.   'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [
