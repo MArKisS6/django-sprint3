@@ -109,7 +109,7 @@ class Post(PublishedModel):
     class Meta:
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
-        related_name = 'Post'
+        default_related_name = 'Post'
 
     def __str__(self):
         return textwrap.shorten(
