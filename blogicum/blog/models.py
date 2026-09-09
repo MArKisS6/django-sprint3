@@ -1,3 +1,4 @@
+import textwrap
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -5,7 +6,9 @@ from core.models import PublishedModel
 
 User = get_user_model()
 
-MAXL = 256
+MAX_LEN = 256
+MAX_POST = 5
+MAX_STR = 50
 
 class Location(PublishedModel):
     name = models.CharField(
@@ -18,7 +21,13 @@ class Location(PublishedModel):
         verbose_name_plural = 'Местоположения'
 
     def __str__(self):
-        return self.name
+        return textwrap.shorten(
+            self.title, 
+            width=MAX_STR, 
+            placeholder='...'
+        )
+
+
 
 
 class Category(PublishedModel):
@@ -43,7 +52,11 @@ class Category(PublishedModel):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return self.title
+        return textwrap.shorten(
+            self.title, 
+            width=MAX_STR, 
+            placeholder='...'
+        )
 
 
 class Post(PublishedModel):
@@ -85,4 +98,8 @@ class Post(PublishedModel):
         verbose_name_plural = 'Публикации'
 
     def __str__(self):
-        return self.title
+        return textwrap.shorten(
+            self.title, 
+            width=MAX_STR, 
+            placeholder='...'
+        )
