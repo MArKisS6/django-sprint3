@@ -5,6 +5,7 @@ from blog.models import Category, Post
 
 MAX_POST = 5
 
+
 def index(request):
     post_list = Post.objects.filter(
         is_published=True,

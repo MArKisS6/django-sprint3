@@ -7,6 +7,7 @@ User = get_user_model()
 MAX_LEN = 256
 MAX_STR = 50
 
+
 class PublishedModel(models.Model):
     """Абстрактная модель. Добавляет флаг is_published и created_at."""
 
@@ -36,8 +37,8 @@ class Location(PublishedModel):
 
     def __str__(self):
         return textwrap.shorten(
-            self.title, 
-            width=MAX_STR, 
+            self.title,
+            width=MAX_STR,
             placeholder='...'
         )
 
@@ -65,8 +66,8 @@ class Category(PublishedModel):
 
     def __str__(self):
         return textwrap.shorten(
-            self.title, 
-            width=MAX_STR, 
+            self.title,
+            width=MAX_STR,
             placeholder='...'
         )
 
@@ -111,7 +112,7 @@ class Post(PublishedModel):
 
     def __str__(self):
         return textwrap.shorten(
-            self.title, 
-            width=MAX_STR, 
+            self.title,
+            width=MAX_STR,
             placeholder='...'
         )
