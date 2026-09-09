@@ -7,12 +7,11 @@ from core.models import PublishedModel
 User = get_user_model()
 
 MAX_LEN = 256
-MAX_POST = 5
 MAX_STR = 50
 
 class Location(PublishedModel):
     name = models.CharField(
-        max_length=MAXL,
+        max_length=MAX_LEN,
         verbose_name='Название места'
     )
 
@@ -32,7 +31,7 @@ class Location(PublishedModel):
 
 class Category(PublishedModel):
     title = models.CharField(
-        max_length=MAXL,
+        max_length=MAX_LEN,
         verbose_name='Заголовок'
     )
     description = models.TextField(
@@ -61,7 +60,7 @@ class Category(PublishedModel):
 
 class Post(PublishedModel):
     title = models.CharField(
-        max_length=MAXL,
+        max_length=MAX_LEN,
         verbose_name='Заголовок'
     )
     text = models.TextField(
