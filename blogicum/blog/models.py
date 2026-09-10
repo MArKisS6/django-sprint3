@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-MAX_LEN = 256
+MAX_LEN_TITLE = 256
 MAX_STR = 50
 
 
@@ -27,7 +27,7 @@ class PublishedModel(models.Model):
 
 class Location(PublishedModel):
     name = models.CharField(
-        max_length=MAX_LEN,
+        max_length=MAX_LEN_TITLE,
         verbose_name='Название места'
     )
 
@@ -45,7 +45,7 @@ class Location(PublishedModel):
 
 class Category(PublishedModel):
     title = models.CharField(
-        max_length=MAX_LEN,
+        max_length=MAX_LEN_TITLE,
         verbose_name='Заголовок'
     )
     description = models.TextField(
@@ -74,7 +74,7 @@ class Category(PublishedModel):
 
 class Post(PublishedModel):
     title = models.CharField(
-        max_length=MAX_LEN,
+        max_length=MAX_LEN_TITLE,
         verbose_name='Заголовок'
     )
     text = models.TextField(
